@@ -3,15 +3,18 @@
 #include <vector>
 
 //  long long to avoid integer 
-long long max( int array[], int n ) {
+int max( int array[], int n ) {
 
     int maxNum = array[0];
+    int maxIndex = 0;
 
     for (int i = 1; i < n; ++i) {
-        if ( array[i] > maxNum )
-            maxNum = array[i];
+        if ( array[i] > maxNum ) {
+            maxIndex = i;
+        }
+            
     }
-    return maxNum;
+    return maxIndex;
 }
 
 int getIndex(int element, int array[], int size) {
@@ -47,8 +50,35 @@ long long MaxPairWiseProductFast( int array[], int size ) {
     return ((long long) (array[max_index_1])) * array[max_index_2];
 }
 
+void test() {
+    while (true) {
+        int n = rand() % 1000 + 2;
+        std::cout << n << "\n";
+        int array[n];
+        for(int i = 0; i < n; ++i) {
+            array[i] = rand() % 100000;
+        }
+        for(int i = 0; i < n; ++i) {
+            std::cout << array[i] << ' ';
+        }
+        std::cout << "\n";
+        long long result_1 = MaxPairWiseProduct( array, n );
+        long long result_2 = MaxPairWiseProductFast( array, n );
+        if(result_1 != result_2) {
+            std::cout << "Wrong answer: " << result_1 << ", " << result_2;
+            break;
+        } else {
+            std::cout << "OK\n";
+        }
+    }
+    
+}
 
 int main() {
+
+    //  Test algorithm
+    //test();
+
     int size;
     std::cin >> size;
 
@@ -58,6 +88,6 @@ int main() {
         std::cin >> array[i];
     }
 
-    std::cout << MaxPairWiseProduct( array, size );
+    std::cout << MaxPairWiseProductFast( array, size );
     return 0;
 }

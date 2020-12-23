@@ -58,6 +58,6 @@ int main() {
         std::cin >> array[i];
     }
 
-    std::cout << MaxPairWiseProduct( array, size );
+    std::cout << MaxPairWiseProductFast( array, size );
     return 0;
 }
